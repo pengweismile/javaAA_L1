@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allen.training.mybatis.mapper.BlogMapper">
+    <insert id="insertBlog" useGeneratedKeys="true" keyProperty="id">
+        insert into Student (sid,sname) values ( #{sid},#{sname})
+    </insert>
+
+
+    <resultMap id="blogMap" type="com.allen.training.mybatis.pojo.Blog">
+        <id property="sid" column="sid" javaType="java.lang.Integer"></id>
+        <result property="sname" column="sname" javaType="java.lang.String"></result>
+    </resultMap>
+
+    <select id="getBlogById" parameterType="int" resultMap="blogMap">
+        select sid,sname from Student where sid=#{sid}
+    </select>
+
+     <delete id="deleteBlog" parameterType="int">
+     delete from Student where sid=#{sid}
+     </delete>
+
+    <update id="updateBlog"  parameterType="com.allen.training.mybatis.pojo.Blog">
+        update Student set sname=#{sname} where sid=#{sid}
+    </update>
+</mapper>
